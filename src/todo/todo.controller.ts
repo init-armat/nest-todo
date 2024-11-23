@@ -35,8 +35,8 @@ export class TodoController {
     isArray: true,
   })
   @Get()
-  async findAll(): Promise<Todo[]> {
-    return await this.todoService.findAll();
+  async getAll(): Promise<Todo[]> {
+    return await this.todoService.getAll();
   }
 
   @ApiResponse({
@@ -49,8 +49,8 @@ export class TodoController {
     description: 'Todo not found',
   })
   @Get(':id')
-  async findOne(@Param('id') id: string): Promise<Todo> {
-    return await this.todoService.findOne(id);
+  async getOne(@Param('id') id: string): Promise<Todo> {
+    return await this.todoService.getOne(id);
   }
 
   @ApiResponse({

@@ -16,11 +16,11 @@ export class TodoService {
     return await this.todoRepository.save(newTodo);
   }
 
-  async findAll(): Promise<Todo[]> {
+  async getAll(): Promise<Todo[]> {
     return await this.todoRepository.find();
   }
 
-  async findOne(id: string): Promise<Todo> {
+  async getOne(id: string): Promise<Todo> {
     return await this.getTodoById(id);
   }
 
@@ -37,10 +37,10 @@ export class TodoService {
   }
 
   private async getTodoById(id: string): Promise<Todo> {
-    const todo = await this.todoRepository.findOne({ where: { id } });
-    if (!todo) {
-      throw new NotFoundException('Todo not found');
+    try {
+      return await this.todoRepository.findOne({ where: { id } });
+    } catch {
+      throw new NotFoundException();
     }
-    return todo;
   }
 }
